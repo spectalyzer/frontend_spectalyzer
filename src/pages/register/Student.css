@@ -1,0 +1,160 @@
+.student-reg {
+  font-family: "Montserrat", sans-serif;
+}
+
+.student-register-heading {
+  margin-top: 10rem;
+  margin-left: 22rem;
+  font-size: 27px;
+  color: #333333;
+}
+.warning-text {
+  margin-top: 2rem;
+  font-size: 16px;
+}
+.star {
+  color: red;
+}
+
+.applicants-info {
+  display: flex;
+  gap: 1rem;
+}
+.applicants-info input {
+  width: 600px;
+  height: 40px;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(242, 239, 239);
+  padding: 1rem;
+}
+.field-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.reg-form {
+  margin-left: 22rem;
+  margin-top: 2rem;
+}
+.single-field input {
+  width: 1220px;
+  height: 40px;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(242, 239, 239);
+}
+.gender-sec {
+  margin-left: 0.5rem;
+}
+
+.gender-sec input {
+  margin-right: 0.5rem;
+}
+.gender-sec label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 1rem;
+}
+
+.date input {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444444;
+  width: 200px;
+  height: 40px;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(242, 239, 239);
+  margin-bottom: 1rem;
+}
+.img-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30rem;
+}
+
+.img-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.img-tail {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 16px;
+  color: #444444;
+}
+.age-text {
+  font-size: 15px;
+  color: #444444;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.submit-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background-color: #222222;
+  height: 40px;
+  width: 80px;
+  margin-bottom: 2rem;
+  margin-top: 10px;
+}
+/* Hide the default checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+  display: inline-block;
+  width: 15px; /* Adjust size here */
+  height: 15px; /* Adjust size here */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px; /* Optional: to make the checkbox edges rounded */
+  cursor: pointer;
+  position: relative;
+}
+
+/* Checked state (when checkbox is checked) */
+input[type="checkbox"]:checked + .custom-checkbox {
+  background-color: #4caf50; /* Change this color for the checked state */
+  border-color: #4caf50;
+}
+
+/* Checkmark (visible when checkbox is checked) */
+.custom-checkbox::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox::after {
+  display: block;
+}
+
+.custom-checkbox::after {
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.error {
+  text-align: center;
+  color: red;
+}
+.success {
+  text-align: center;
+  color: green;
+  margin-bottom: 2rem;
+}

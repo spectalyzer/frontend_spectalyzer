@@ -1,0 +1,102 @@
+.contact{
+    background-color: #222222;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 5rem;
+}
+.contact-section{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    max-width: 1250px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding-bottom: 5rem;
+}
+.spec-des{
+    color: #7b8887;
+    font-size: 14px;
+    line-height: 27px;
+    text-align: justify;
+    margin-top: 1rem;
+}
+.spec-img{
+    height: 10vh;
+}
+.contact-title{
+    font-size: 14px;
+    color: #c8c8c8;
+}
+.contact-num{
+    margin-left: 0.5rem;
+    font-size: 14px;
+    color: #7b8887;
+}
+.num-field{
+    margin-top: 2rem;
+    
+}
+.mail-btn{
+    outline: 0;
+    border: 0;
+    background-color: #222222;
+    color: #7b8887;
+    font-size: 14px;
+    margin-top: 1rem;
+}
+.loc-field{
+    color: #7b8887;
+    font-size: 14px;
+    margin-top: 1rem;
+}
+.loc-details{
+    margin-left: 0.5rem;
+}
+.mail-id{
+    margin-left: 0.5rem;
+}
+.name-field{
+    display: block;
+    margin-top: 1rem;
+    width: 35vh;
+    height: 4vh;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+   outline: 0;
+}
+
+.email-field{
+    display: block;
+    margin-top: 1rem;
+    width: 35vh;
+    height: 4vh;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+   outline: 0;
+}
+.message-field {
+    display: block;
+    margin-top: 1rem;
+    width: 35vh;
+    height: 10vh;
+    border-radius: 5px;
+    padding: 0.5rem;
+    outline: 0;
+    font-size: 14px;
+}
+.message-field::placeholder {
+    color: #515151;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; 
+}
+.submit-btn{
+    border: 0;
+    border-radius: 2px;
+    margin-top: 1rem;
+    height: 2rem;
+    width: 5rem;
+    color: white;
+    background-color: #7b888736;
+    cursor: pointer;
+}
+.submit-btn:hover{
+    background-color: #08AAA4;
+}

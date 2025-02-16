@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+.login {
+  font-family: "Lato", sans-serif;
+  margin-bottom: 0rem;
+}
+.login-sec {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 15rem;
+}
+.forgot_pass {
+  font-size: 15px;
+  font-weight: 700;
+  color: #47aff5;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.login-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #555555;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.name-field {
+  height: 5vh;
+  width: 40vh;
+  border: 1px solid #555555;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.pass-field {
+  margin-top: 1rem;
+  height: 5vh;
+  width: 40vh;
+  border: 1px solid #555555;
+  border-radius: 0;
+  padding: 1rem;
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.keep-sec {
+  display: flex;
+  justify-content: center;
+  margin-right: 9.5rem;
+}
+
+.checkbox {
+  margin-top: 2rem;
+  border: 2px solid #555555;
+  transform: scale(1.5);
+  margin-right: 18px;
+}
+.check-des {
+  margin-top: 2rem;
+  font-size: 13px;
+  margin-left: 1rem;
+}
+.btn-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.login-btn {
+  height: 5vh;
+  width: 18vh;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  background-color: #3ba1da;
+  color: white;
+  cursor: pointer;
+}
+.register-btn {
+  height: 5vh;
+  width: 18vh;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  background-color: #eeeeee;
+  color: #08ada7;
+  cursor: pointer;
+}
+.error {
+  text-align: center;
+  color: red;
+}
+.success {
+  text-align: center;
+  color: green;
+  margin-bottom: 2rem;
+}

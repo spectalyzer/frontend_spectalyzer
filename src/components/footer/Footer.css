@@ -1,0 +1,11 @@
+.footer {
+    height: 7vh;
+    background-color: #121313;
+}
+
+.footer-text {
+    text-align: center;
+    color: #acb4b8;
+    padding-top: 1rem;
+    font-size: 17px;
+}

@@ -1,0 +1,29 @@
+/* FONT */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@400;500;600;900&family=Playfair+Display:wght@400;800&display=swap");
+@import "tailwindcss";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.navlink-active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}

@@ -1,0 +1,32 @@
+.daily-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Set three columns */
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 8rem;
+}
+
+.results-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .daily-results {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+
+  .results-card {
+    grid-column: span 1; /* Reset span for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .daily-results {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+}

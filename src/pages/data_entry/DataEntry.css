@@ -1,0 +1,174 @@
+.data-entry-container{
+    margin-top: 10rem;
+    margin-left: 25rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 5rem;
+  }
+  
+  .data-title{
+    color: #333333;
+    font-size: 25px;
+  }
+  .warning-text{
+    margin-top: 2rem;
+    font-size: 16px;
+  }
+  .star{
+   color: red;
+  }
+  
+  .export-btn{
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #222222;
+    height: 40px;
+    width: 120px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .entry-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #666666;
+    margin-top: 2rem;
+  }
+  .data-entry-box{
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+  }
+  .date input{
+    font-size: 16px;
+    height: 40px;
+    width: 200px;
+    background-color: #F9F9F9;
+    border: 1px solid rgb(242, 239, 239);
+    margin-top: 1rem;
+  }
+  .tale-title{
+    margin-top: 1rem;
+    font-size: 15px;
+    color: #666666;
+    margin-bottom: 1rem;
+  }
+  .entry-title{
+    margin-top: 1rem;
+  }
+  .wake-up-time input{
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+    background-color: #F9F9F9;
+    border: 1px solid rgb(242, 239, 239);
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .wake-up-point input{
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+    background-color: #F9F9F9;
+    border: 1px solid rgb(242, 239, 239);
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  
+  .single-entry-field input{
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+    background-color: #F9F9F9;
+    border: 1px solid rgb(242, 239, 239);
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  .radio-entry input{
+    
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+  }
+  .radio-entry label{
+    font-size: 16px;
+    font-weight: 600;
+    color: #666666;
+    
+  }
+  
+  .Therapy_type input{
+    
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+  }
+  .Therapy_type  label{
+    font-size: 16px;
+    font-weight: 600;
+    color: #666666;
+    
+  } 
+  .time-entry-field input{
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+    background-color: #F9F9F9;
+    border: 1px solid rgb(242, 239, 239);
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .List_of_medicine textarea{
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 15px;
+  }
+  
+  .Special_activity  textarea{
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 15px;
+  }
+  .img-container{
+    display: flex;
+   justify-content: space-between;
+   margin-right: 30rem;
+  }
+  
+  .img-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #444444;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .img-tail{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 16px;
+    color: #444444;
+  }
+  .data-btn{
+    background-color: #222222;
+    height: 40px;
+    width: 300px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .data-btn:hover{
+    background-color: #08A6A0;
+  }
+  .save-btn{
+    color: rgb(107, 114, 128);
+    background-color: #FBFBFB;
+    height: 40px;
+    width: 300px;
+    border: 0.5px gray solid;
+    margin-left: 2rem;
+    cursor: pointer;
+    font-weight: 500;
+     
+  }
