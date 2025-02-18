@@ -17,7 +17,7 @@ const DataEntry = () => {
     outdoorActivity: 0,
     therapyAtSchool: "",
     therapyType: "",
-    launch: 0,
+    lunch: 0,
     eveningSnacks: 0,
     dinner: 0,
     goingToSleep: 0,
@@ -49,6 +49,7 @@ const DataEntry = () => {
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
+    console.log("Changing:", name, "Value:", value); // Debugging log
 
     if (
       type === "number" &&
@@ -102,7 +103,7 @@ const DataEntry = () => {
           outdoorActivity: 0,
           therapyAtSchool: "",
           therapyType: "",
-          launch: 0,
+          lunch: 0,
           eveningSnacks: 0,
           dinner: 0,
           goingToSleep: 0,
@@ -400,22 +401,23 @@ const DataEntry = () => {
               </p>
             </div>
 
-            {/* Launch */}
-            <div className="Launch single-entry-field">
+            {/* Lunch */}
+            <div className="Lunch single-entry-field">
               <p className="entry-title">
-                Launch <span className="star">*</span>
+                Lunch <span className="star">*</span>
               </p>
               <input
                 required
                 type="number"
-                name="launch"
-                value={formData.launch}
+                name="lunch"
+                value={formData.lunch} // Ensure it's using lowercase
                 onChange={handleChange}
                 placeholder="0-10"
               />
+
               <p className="tale-title">Please enter a number from 0 to 10.</p>
               <p className="tale-title">
-                Does he take the launch properly? Appetite and asking for
+                Does he take the Lunch properly? Appetite and asking for
                 favorite food. 0 is the worst and 10 is the best
               </p>
             </div>
@@ -476,38 +478,42 @@ const DataEntry = () => {
           <div className="data-entry-box">
             {/* Go to Bed At */}
             <div className="time-input time-entry-field">
-              <p className="entry-title">Go_to_Bed_at</p>
+              <p className="entry-title">Go to Bed At</p>
               <input
                 type="number"
-                name="goToBedHour"
-                value={formData.goToBedHour}
+                name="goToBedAt"
+                data-index="0"
+                value={formData.goToBedAt[0]}
                 onChange={handleChange}
               />
               <input
                 type="number"
-                name="goToBedMinute"
-                value={formData.goToBedMinute}
+                name="goToBedAt"
+                data-index="1"
+                value={formData.goToBedAt[1]}
                 onChange={handleChange}
               />
-              <p className="tale-title">Exact time of going to bed</p>
+              <p className="tale-title">Exact time of going to bed (HH:MM)</p>
             </div>
 
             {/* Sleep At */}
             <div className="time-input time-entry-field">
-              <p className="entry-title">Sleep_at</p>
+              <p className="entry-title">Sleep At</p>
               <input
                 type="number"
-                name="sleepHour"
-                value={formData.sleepHour}
+                name="sleepAt"
+                data-index="0"
+                value={formData.sleepAt[0]}
                 onChange={handleChange}
               />
               <input
                 type="number"
-                name="sleepMinute"
-                value={formData.sleepMinute}
+                name="sleepAt"
+                data-index="1"
+                value={formData.sleepAt[1]}
                 onChange={handleChange}
               />
-              <p className="tale-title">Exact time of sleeping</p>
+              <p className="tale-title">Exact time of sleeping (HH:MM)</p>
             </div>
 
             {/* Getting Sleep Time */}
@@ -1009,9 +1015,7 @@ const DataEntry = () => {
 
             {/* Masturbation */}
             <div className="Masturbation single-entry-field">
-              <p className="entry-title">
-                Masturbation <span className="star">*</span>
-              </p>
+              <p className="entry-title">Masturbation</p>
               <input
                 required
                 type="number"
