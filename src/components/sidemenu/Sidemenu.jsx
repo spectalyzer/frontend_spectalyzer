@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faHouse,
-  faFile,
+  faKeyboard,
   faBook,
   faChartLine,
   faGear,
@@ -114,6 +114,23 @@ const Sidemenu = () => {
               } md:block`}
             >
               Daily Entries
+            </span>
+          </NavLink>
+          <NavLink
+            to="/studentoverview/dataentry"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center p-3 text-gray-900 bg-gray-200"
+                : "flex items-center p-3 text-gray-600 hover:bg-gray-200 hover:text-gray-900"
+            }
+          >
+            <FontAwesomeIcon icon={faKeyboard} size="xl" />
+            <span
+              className={`ml-4 text-sm font-medium ${
+                isMobileMenuOpen ? "block" : "hidden"
+              } md:block`}
+            >
+              Entry Data
             </span>
           </NavLink>
 

@@ -42,11 +42,6 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
-
-      {
-        path: "/data_entry",
-        element: <DataEntry></DataEntry>,
-      },
     ],
   },
 
@@ -69,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "dailydata",
         element: <DailyData></DailyData>,
+      },
+      {
+        path: "dataentry",
+        element: <DataEntry></DataEntry>,
       },
       {
         path: "settings",
