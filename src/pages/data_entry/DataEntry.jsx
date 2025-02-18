@@ -7,7 +7,7 @@ import { useCreateDataEntryMutation } from "../../services/dataEntryApi";
 const DataEntry = () => {
   const [formData, setFormData] = useState({
     dateOfRecord: "",
-    wakeUpAt: [0, 0],
+    wakeUpTime: { hour: 0, minute: 0 },
     wakingUp: 0,
     firstGoOut: 0,
     firstScreenOn: 0,
@@ -21,16 +21,34 @@ const DataEntry = () => {
     eveningSnacks: 0,
     dinner: 0,
     goingToSleep: 0,
-    goToBedAt: [0, 0],
-    sleepAt: [0, 0],
+    goToBedAt: { hour: 0, minute: 0 },
+    sleepAt: { hour: 0, minute: 0 },
     gettingSleepTime: 0,
     outgoingTendency: 0,
     outgoingCount: 0,
-    medOtherSickness: "",
+    screenTime: 0,
+    junkFood: 0,
+    makingNoise: 0,
+    walking: 0,
+    showingAnger: 0,
+    glassCrashTendency: 0,
+    pushingTendency: 0,
+    itemThrowTendency: 0,
+    foodWaterThrowTendency: 0,
+    hitWithHand: 0,
+    hitWithHead: 0,
+    cooperateAtSchool: 0,
+    cooperateAtHome: 0,
+    cuttingNails: 0,
+    hairDressing: 0,
+    bedwetting: 0,
+    regularMedication: "",
+    otherSickness: "",
     nameOfSickness: "",
+    medOtherSickness: "",
+    listOfMedicine: "",
     masturbation: 0,
     toilet: 0,
-    listOfMedicine: "",
     overnightSleeping: 0,
     specialActivity: "",
   });
@@ -48,21 +66,22 @@ const DataEntry = () => {
   const [dataEntry, { isLoading }] = useCreateDataEntryMutation();
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    console.log("Changing:", name, "Value:", value); // Debugging log
+    const { name, value, type, dataset } = e.target;
 
+    // Check for valid numbers in the range of 0 to 10
     if (
       type === "number" &&
-      name !== "wakeUpAt" &&
+      name !== "wakeUpTime" &&
       name !== "goToBedAt" &&
       name !== "sleepAt" &&
       (value < 0 || value > 10)
     )
       return;
 
-    if (Array.isArray(formData[name])) {
-      const newValues = [...formData[name]];
-      newValues[e.target.dataset.index] = value;
+    // Handle changes for time objects (hour and minute)
+    if (name === "wakeUpTime" || name === "goToBedAt" || name === "sleepAt") {
+      const newValues = { ...formData[name] };
+      newValues[dataset.index] = value;
       setFormData({ ...formData, [name]: newValues });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -176,16 +195,16 @@ const DataEntry = () => {
               <p className="entry-title">Wake_up_at</p>
               <input
                 type="number"
-                name="wakeUpAt"
-                data-index="0"
-                value={formData.wakeUpAt[0]}
+                name="wakeUpTime"
+                data-index="hour"
+                value={formData.wakeUpTime ? formData.wakeUpTime.hour : 0}
                 onChange={handleChange}
               />
               <input
                 type="number"
-                name="wakeUpAt"
-                data-index="1"
-                value={formData.wakeUpAt[1]}
+                name="wakeUpTime"
+                data-index="minute"
+                value={formData.wakeUpTime ? formData.wakeUpTime.minute : 0}
                 onChange={handleChange}
               />
               <p className="tale-title">Exact time when wakeup</p>
@@ -410,7 +429,7 @@ const DataEntry = () => {
                 required
                 type="number"
                 name="lunch"
-                value={formData.lunch} // Ensure it's using lowercase
+                value={formData.lunch}
                 onChange={handleChange}
                 placeholder="0-10"
               />
@@ -482,15 +501,15 @@ const DataEntry = () => {
               <input
                 type="number"
                 name="goToBedAt"
-                data-index="0"
-                value={formData.goToBedAt[0]}
+                data-index="hour"
+                value={formData.goToBedAt ? formData.goToBedAt.hour : 0}
                 onChange={handleChange}
               />
               <input
                 type="number"
                 name="goToBedAt"
-                data-index="1"
-                value={formData.goToBedAt[1]}
+                data-index="minute"
+                value={formData.goToBedAt ? formData.goToBedAt.minute : 0}
                 onChange={handleChange}
               />
               <p className="tale-title">Exact time of going to bed (HH:MM)</p>
@@ -502,15 +521,15 @@ const DataEntry = () => {
               <input
                 type="number"
                 name="sleepAt"
-                data-index="0"
-                value={formData.sleepAt[0]}
+                data-index="hour"
+                value={formData.sleepAt ? formData.sleepAt.hour : 0}
                 onChange={handleChange}
               />
               <input
                 type="number"
                 name="sleepAt"
-                data-index="1"
-                value={formData.sleepAt[1]}
+                data-index="minute"
+                value={formData.sleepAt ? formData.sleepAt.minute : 0}
                 onChange={handleChange}
               />
               <p className="tale-title">Exact time of sleeping (HH:MM)</p>
@@ -1015,7 +1034,9 @@ const DataEntry = () => {
 
             {/* Masturbation */}
             <div className="Masturbation single-entry-field">
-              <p className="entry-title">Masturbation</p>
+              <p className="entry-title">
+                Masturbation <span className="star">*</span>
+              </p>
               <input
                 required
                 type="number"

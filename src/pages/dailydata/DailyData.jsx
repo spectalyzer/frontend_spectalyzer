@@ -57,9 +57,16 @@ const DailyData = () => {
 
   // 10) Format time object { hour, minute }
   const formatTime = (timeObj) => {
-    if (!timeObj) return "N/A";
+    if (!timeObj || Object.keys(timeObj).length === 0) return "N/A";
+
     const { hour, minute } = timeObj;
-    return `${hour}:${minute.toString().padStart(2, "0")}`;
+
+    // Ensure hour and minute are valid numbers
+    const formattedHour = hour !== undefined ? hour : "00";
+    const formattedMinute =
+      minute !== undefined ? minute.toString().padStart(2, "0") : "00";
+
+    return `${formattedHour}:${formattedMinute}`;
   };
 
   // 11) Calculate total pages
