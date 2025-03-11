@@ -30,18 +30,17 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
-  // ADD PIE IMPORTS:
   PieChart,
   Pie,
   Cell,
   Legend,
 } from "recharts";
+import Loader from "../../components/loader/Loader.jsx"; // Universal Loader import
 import "./DailyResults.css";
 
 const transformBarChartData = (data) => {
   const labels = data.labels;
   const datasets = data.datasets;
-
   return labels.map((label, index) => {
     const entry = { date: label };
     datasets.forEach((dataset) => {
@@ -54,7 +53,6 @@ const transformBarChartData = (data) => {
 const transformLineChartData = (data) => {
   const labels = data.labels;
   const dataset = data.datasets[0];
-
   return labels.map((label, index) => ({
     date: label,
     value: dataset.data[index],
@@ -64,7 +62,7 @@ const transformLineChartData = (data) => {
 const DailyResults = () => {
   const token = localStorage.getItem("token");
 
-  // Existing queries
+  // Existing queries with their loading states
   const { data: foodData, isLoading: isFoodLoading } =
     useGetFoodBarChartDataQuery(token);
   const { data: sleepingData, isLoading: isSleepingLoading } =
@@ -80,7 +78,7 @@ const DailyResults = () => {
   const { data: goingToSleepData, isLoading: isGoingToSleepLoading } =
     useGetgoingToSleepBarChartDataQuery(token);
 
-  // NEW: Pie chart data query
+  // Pie chart data query
   const { data: schoolingPieData, isLoading: isPieLoading } =
     useGetschoolingPieChartDataQuery(token);
 
@@ -138,7 +136,10 @@ const DailyResults = () => {
       <div className="results-card">
         <h3>Food Consumption</h3>
         {isFoodLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={transformedFoodData}>
@@ -158,7 +159,10 @@ const DailyResults = () => {
       <div className="results-card">
         <h3>Sleeping Patterns</h3>
         {isSleepingLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={transformedSleepingData}>
@@ -175,7 +179,10 @@ const DailyResults = () => {
       <div className="results-card">
         <h3>Screen Time</h3>
         {isScreenTimeLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={transformedScreenTimeData}>
@@ -192,7 +199,10 @@ const DailyResults = () => {
       <div className="results-card">
         <h3>Noise Levels</h3>
         {isNoiseLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={transformedNoiseData}>
@@ -205,11 +215,14 @@ const DailyResults = () => {
         )}
       </div>
 
-      {/* Additional Walking Chart Card */}
+      {/* Walking Chart Card */}
       <div className="results-card">
         <h3>Walking</h3>
         {isWalkingLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={transformedWalkingData}>
@@ -222,11 +235,14 @@ const DailyResults = () => {
         )}
       </div>
 
-      {/* Additional Waking Up Chart Card */}
+      {/* Waking Up Chart Card */}
       <div className="results-card">
         <h3>Waking Up</h3>
         {isWakingUpLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={transformedWakingUpData}>
@@ -239,11 +255,14 @@ const DailyResults = () => {
         )}
       </div>
 
-      {/* Additional Going to Sleep Chart Card */}
+      {/* Going to Sleep Chart Card */}
       <div className="results-card">
         <h3>Going to Sleep</h3>
         {isGoingToSleepLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={transformedGoingToSleepData}>
@@ -259,7 +278,7 @@ const DailyResults = () => {
       {/* Class Activity */}
       <div className="results-card">
         <h3>Class Activity</h3>
-        {classActivityData && (
+        {classActivityData ? (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={transformedClassActivityData}>
               <XAxis dataKey="date" />
@@ -268,13 +287,13 @@ const DailyResults = () => {
               <Line dataKey="value" stroke="#4CAF50" />
             </LineChart>
           </ResponsiveContainer>
-        )}
+        ) : null}
       </div>
 
       {/* Outdoor Activity */}
       <div className="results-card">
         <h3>Outdoor Activity</h3>
-        {outdoorActivityData && (
+        {outdoorActivityData ? (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={transformedOutdoorActivityData}>
               <XAxis dataKey="date" />
@@ -283,13 +302,13 @@ const DailyResults = () => {
               <Line dataKey="value" stroke="#4CAF50" />
             </LineChart>
           </ResponsiveContainer>
-        )}
+        ) : null}
       </div>
 
       {/* Junk Food Consumption */}
       <div className="results-card">
         <h3>Junk Food Consumption</h3>
-        {junkFoodData && (
+        {junkFoodData ? (
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={transformedJunkFoodData}>
               <XAxis dataKey="date" />
@@ -298,14 +317,17 @@ const DailyResults = () => {
               <Line dataKey="value" stroke="#4CAF50" />
             </LineChart>
           </ResponsiveContainer>
-        )}
+        ) : null}
       </div>
 
-      {/* NEW PIE CHART CARD */}
+      {/* Pie Chart Card */}
       <div className="results-card">
         <h3>School and Off Day Ratio</h3>
         {isPieLoading ? (
-          <p>Loading...</p>
+          <Loader
+            containerClassName="flex items-center justify-center bg-gray-50"
+            containerStyle={{ height: "250px", position: "relative" }}
+          />
         ) : (
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>

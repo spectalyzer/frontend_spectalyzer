@@ -6,6 +6,7 @@ import {
   faEnvelope,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -31,15 +32,15 @@ const Contact = () => {
               the applied therapy and behavior analysis.
             </p>
           </div>
-          <div className="contact-info-section mt-4 ">
-            <p className="text-gray-300 text-sm">CONTACT INFO</p>
+          <div className="contact-info-section  ">
+            <p className="text-gray-300 text-sm mt-6">CONTACT INFO</p>
             <p className="flex  gap-2 items-center text-gray-400 text-sm">
               <FontAwesomeIcon
                 icon={faMobileScreen}
                 size="lg"
-                className="text-gray-400"
+                className="text-gray-400 mt-4"
               />
-              <span className="ml-2">+ 880 1711 505413</span>
+              <span className="ml-2 mt-4">+ 880 1711 505413</span>
             </p>
             <button className="flex  gap-2 items-center mt-4 text-gray-400 text-sm">
               <FontAwesomeIcon
@@ -57,8 +58,14 @@ const Contact = () => {
               />
               <span className="ml-2">1/1-B, Subhanbag, Savar, Dhaka-1340</span>
             </p>
+            <Link
+              to="/privacypolicy"
+              className="flex gap-2 items-center mt-8 text-blue-400 text-sm"
+            >
+              <span className="text-blue-400">Privacy Policy</span>
+            </Link>
           </div>
-          <div className="contact-field">
+          <div className="contact-field mt-6">
             <p className="text-gray-300 text-sm">CONTACT US</p>
             <input
               className="block mt-4 w-3/5 md:w-full h-12 px-3 rounded-md bg-transparent border border-gray-500 text-sm text-gray-400 outline-none"

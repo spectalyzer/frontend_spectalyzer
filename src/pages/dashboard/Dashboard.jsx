@@ -11,11 +11,10 @@ import {
 import "../dashboard/Dashboard.css";
 import Footer from "../../components/footer/Footer";
 import Contact from "../../components/contact/Contact";
-
-// Updated to accept { token, selectedDate }:
 import { useGetFinalScoreQuery } from "../../services/finalScoreService";
 import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 import { Link } from "react-router-dom";
+import Loader from "../../components/loader/Loader.jsx"; // Import the universal Loader
 
 const Dashboard = () => {
   // Retrieve token
@@ -25,8 +24,6 @@ const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState("");
 
   // Fetch final score data from server
-  // If `selectedDate` is non-empty, it calls /getFinalScore?selectedDate=YYYY-MM-DD
-  // If empty, /getFinalScore
   const {
     data: scoreData,
     error,
@@ -43,7 +40,7 @@ const Dashboard = () => {
     name: "",
   });
 
-  // Once we have user info, store it
+  // Store user info when available
   useEffect(() => {
     if (loggedUserData && isSuccess) {
       setUserData({
@@ -57,30 +54,26 @@ const Dashboard = () => {
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
     if (scoreData?.data && scoreData.status === "success") {
-      // If the server returns { status: "success", data: [...] }
       const mapped = scoreData.data.map((item) => ({
         date: item.date, // "YYYY-MM-DD"
         score: item.finalScore, // numeric
       }));
       setChartData(mapped);
     } else {
-      // Clear chart if no success data
       setChartData([]);
     }
   }, [scoreData]);
 
-  // --- RENDER ---
-
   return (
     <>
       <div className="dashboard">
-        {/* -- Header Section -- */}
+        {/* Header Section */}
         <div className="dashboard-header">
           <h1>Hello {userData.name || "User"}</h1>
           <p>Today is {new Date().toLocaleDateString()}</p>
         </div>
 
-        {/* -- Single Date Input -- */}
+        {/* Single Date Input */}
         <div
           className="single-date-select bg-white"
           style={{ marginBottom: "1rem" }}
@@ -102,7 +95,7 @@ const Dashboard = () => {
           />
         </div>
 
-        {/* -- Static Cards -- */}
+        {/* Static Cards */}
         <div className="dashboard-cards">
           <div className="dashboard-card">
             <h3>Student</h3>
@@ -115,28 +108,37 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* -- Chart Section -- */}
+        {/* Chart Section */}
         <div className="dashboard-charts-container">
           <div className="chart-card">
             <div className="chart-title">
-              <h2>Daily Score of last 30 days</h2>
+              <h2>Daily Score of Last 30 Days</h2>
             </div>
 
-            {/* 1) LOADING / FETCHING STATES */}
-            {isLoading && <p>Loading...</p>}
-            {isFetching && <p>Fetching updated data...</p>}
+            {/* Use the universal Loader in the chart area when loading */}
+            {(isLoading || isFetching) && (
+              <Loader
+                containerClassName="flex items-center justify-center bg-gray-50"
+                containerStyle={{
+                  height: "300px",
+                  position: "relative",
+                }}
+              />
+            )}
 
-            {/* 2) HARD ERROR (e.g. 404/500) */}
             {error && (
               <div
-                style={{ color: "red", textAlign: "center", marginTop: "1rem" }}
+                style={{
+                  color: "red",
+                  textAlign: "center",
+                  marginTop: "1rem",
+                }}
               >
                 {error.data?.message ||
                   "An error occurred. Please try again later."}
               </div>
             )}
 
-            {/* 3) STATUS === "FAILED" from the server (e.g. no data) */}
             {!error && scoreData?.status === "failed" && (
               <div
                 className="chart-container"
@@ -154,9 +156,10 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* 4) ACTUAL CHART IF WE HAVE DATA */}
             {!error &&
               scoreData?.status === "success" &&
+              !isLoading &&
+              !isFetching &&
               chartData.length > 0 && (
                 <div className="chart-container">
                   <ResponsiveContainer>
@@ -184,9 +187,10 @@ const Dashboard = () => {
                 </div>
               )}
 
-            {/* 5) IF STATUS === "success" BUT NO DATA */}
             {!error &&
               scoreData?.status === "success" &&
+              !isLoading &&
+              !isFetching &&
               chartData.length === 0 && (
                 <div
                   className="chart-container"
@@ -207,7 +211,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* -- Contact & Footer -- */}
+      {/* Contact & Footer */}
       <Contact />
       <Footer />
     </>

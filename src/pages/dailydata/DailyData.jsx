@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Contact from "../../components/contact/Contact";
 import Footer from "../../components/footer/Footer";
+import Loader from "../../components/loader/Loader.jsx"; // Import the universal Loader
 import { useGetUserEntriesQuery } from "../../services/getEntries.js";
 import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 
@@ -57,16 +58,9 @@ const DailyData = () => {
 
   // 10) Format time object { hour, minute }
   const formatTime = (timeObj) => {
-    if (!timeObj || Object.keys(timeObj).length === 0) return "N/A";
-
+    if (!timeObj) return "N/A";
     const { hour, minute } = timeObj;
-
-    // Ensure hour and minute are valid numbers
-    const formattedHour = hour !== undefined ? hour : "00";
-    const formattedMinute =
-      minute !== undefined ? minute.toString().padStart(2, "0") : "00";
-
-    return `${formattedHour}:${formattedMinute}`;
+    return `${hour}:${minute.toString().padStart(2, "0")}`;
   };
 
   // 11) Calculate total pages
@@ -113,7 +107,10 @@ const DailyData = () => {
       </div>
 
       {/* Loading / Error states */}
-      {isLoading && <p className="text-gray-600">Loading user entries...</p>}
+      {isLoading && (
+        // Render the universal loader as a full-page overlay while data loads
+        <Loader containerClassName="fixed inset-0 flex items-center justify-center bg-gray-50 z-50" />
+      )}
       {error && (
         <p className="text-red-500">
           Error fetching user entries. Please try again.
@@ -129,7 +126,7 @@ const DailyData = () => {
           return (
             <div
               key={idx}
-              className="border border-gray-300 rounded-lg p-4 bg-gray-50 "
+              className="border border-gray-300 rounded-lg p-4 bg-gray-50"
             >
               <h3 className="font-semibold mb-4">Date: {localDate}</h3>
               <ul className="list-none p-0 m-0 text-gray-700">

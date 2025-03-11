@@ -3,26 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faHouse,
-  faKeyboard,
   faBook,
   faChartLine,
   faGear,
   faRightFromBracket,
   faDatabase,
+  faKeyboard,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getToken, removeToken } from "../../services/LocalStorageService";
+import { useGetLoggedUserQuery } from "../../services/userAuthApi";
 
 const Sidemenu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-
   const token = getToken();
-
-  const userData = {
-    fullName: "John Doe",
-    emailAddress: "john.doe@example.com",
-  };
+  const { data: user, isLoading, isError } = useGetLoggedUserQuery(token); // Pass token here
 
   const handleLogout = () => {
     removeToken("token");
@@ -100,6 +96,23 @@ const Sidemenu = () => {
             </span>
           </NavLink>
           <NavLink
+            to="/studentoverview/dataentry"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center p-3 text-gray-900 bg-gray-200"
+                : "flex items-center p-3 text-gray-600 hover:bg-gray-200 hover:text-gray-900"
+            }
+          >
+            <FontAwesomeIcon icon={faKeyboard} size="xl" />
+            <span
+              className={`ml-4 text-sm font-medium ${
+                isMobileMenuOpen ? "block" : "hidden"
+              } md:block`}
+            >
+              Data Entry
+            </span>
+          </NavLink>
+          <NavLink
             to="/studentoverview/dailydata"
             className={({ isActive }) =>
               isActive
@@ -114,23 +127,6 @@ const Sidemenu = () => {
               } md:block`}
             >
               Daily Entries
-            </span>
-          </NavLink>
-          <NavLink
-            to="/studentoverview/dataentry"
-            className={({ isActive }) =>
-              isActive
-                ? "flex items-center p-3 text-gray-900 bg-gray-200"
-                : "flex items-center p-3 text-gray-600 hover:bg-gray-200 hover:text-gray-900"
-            }
-          >
-            <FontAwesomeIcon icon={faKeyboard} size="xl" />
-            <span
-              className={`ml-4 text-sm font-medium ${
-                isMobileMenuOpen ? "block" : "hidden"
-              } md:block`}
-            >
-              Entry Data
             </span>
           </NavLink>
 
@@ -174,10 +170,21 @@ const Sidemenu = () => {
       <div className="p-3 border-t md:block hidden">
         <div className="flex items-center">
           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-800">
-              {userData.fullName}
-            </p>
-            <p className="text-xs text-gray-500">{userData.emailAddress}</p>
+            {/* Display user name and email */}
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : isError ? (
+              <p>Error loading user data</p>
+            ) : (
+              <>
+                <p className="text-sm font-medium text-gray-800">
+                  {user?.user?.name || "John Doe"}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {user?.user?.email || "john.doe@example.com"}
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>

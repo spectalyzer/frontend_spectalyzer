@@ -4,12 +4,16 @@ import "aos/dist/aos.css";
 import bgImg from "../../assets/images/hero-original2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Hero = () => {
   useEffect(() => {
     AOS.init({ duration: "2000" });
   }, []);
-
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/student");
+  };
   return (
     <div
       className="relative h-screen w-full overflow-hidden bg-cover bg-center "
@@ -38,6 +42,7 @@ const Hero = () => {
         <button
           className="px-4 py-3 text-white text-xs font-semibold bg-teal-500  hover:bg-gray-700 focus:outline-none"
           data-aos="fade-down"
+          onClick={handleClick}
         >
           JOIN NOW <FontAwesomeIcon className="" icon={faHeart} />
         </button>

@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "./../../services/userAuthApi";
 import { storeToken } from "../../services/LocalStorageService";
+import TermsModal from "../../components/modals/TermsModal";
 
 const Student = () => {
   const [formData, setFormData] = useState({
@@ -97,13 +98,18 @@ const Student = () => {
       setError({ status: true, msg: "All Fields are Required", type: "error" });
     }
   };
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => {
     setError({ status: false, msg: "", type: "" });
   };
 
-  // Debug: log the error object to confirm it changes
-  console.log("Current error state:", error);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeTermsModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="student-reg">
@@ -248,7 +254,12 @@ const Student = () => {
               type="checkbox"
               name="tc"
               checked={formData.tc}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e);
+                if (!formData.tc) {
+                  openModal();
+                }
+              }}
             />
             <span className="custom-checkbox"></span> I accept the terms and
             conditions
@@ -321,7 +332,7 @@ const Student = () => {
           </div>
         </div>
       )}
-
+      <TermsModal isOpen={isModalOpen} closeModal={closeTermsModal} />
       <Contact />
       <Footer />
     </div>

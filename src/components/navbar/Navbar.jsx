@@ -75,21 +75,10 @@ const Navbar = () => {
 
           {/* Conditionally render Register link based on token */}
           {!token && (
-            <li
-              className="nav-item register-item"
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              <a href="/student" onClick={closeMenu}>
-                Register <FontAwesomeIcon icon={faChevronDown} size="2xs" />
-              </a>
-              {dropdown && (
-                <ul className="dropdown-menu">
-                  <li className="nav-item">
-                    <Link to="/student">Student</Link>
-                  </li>
-                </ul>
-              )}
+            <li className="nav-item">
+              <Link to="/student" onClick={closeMenu}>
+                Register
+              </Link>
             </li>
           )}
 

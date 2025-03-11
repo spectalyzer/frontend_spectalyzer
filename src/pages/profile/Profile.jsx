@@ -46,14 +46,6 @@ const Profile = () => {
         <br />
         <div className="flex justify-between items-center mb-6">
           <div className="flex gap-6 items-center">
-            <img
-              src={
-                file ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-              }
-              alt="Profile"
-              className="w-28 h-28 rounded-full shadow-sm"
-            />
             <div>
               <h2 className="text-2xl font-semibold">{userData.name}</h2>
               <p className="text-lg text-gray-600">Email: {userData.email}</p>

@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
-} from "react-router-dom"; // Ensure Navigate is imported
+} from "react-router-dom";
 import "./index.css";
 import Home from "./components/Layout/Home.jsx";
 import Main from "./components/Layout/Main.jsx";
 import Student from "./pages/register/Student.jsx";
-
 import Login from "./pages/login/Login.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import { Provider } from "react-redux";
@@ -21,57 +19,61 @@ import DailyResults from "./pages/dailyResults/DailyResults.jsx";
 import StudentLayout from "./components/Layout/StudentLayout.jsx";
 import DailyData from "./pages/dailydata/DailyData.jsx";
 import Settings from "./pages/settings/Settings.jsx";
+import { LoaderProvider } from "./components/loader/Loader.jsx"; // Import the LoaderProvider
+import PrivacyPolicy from "./components/privacypolicy/PrivacyPolicy.jsx";
 
 const token = localStorage.getItem("token");
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: <Main />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/student",
         element: !token ? <Student /> : <Navigate to="/profile" />,
       },
-
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <Login />,
+      },
+      {
+        path: "/privacypolicy",
+        element: <PrivacyPolicy />,
       },
     ],
   },
-
   {
     path: "/studentoverview",
-    element: <StudentLayout></StudentLayout>,
+    element: <StudentLayout />,
     children: [
       {
-        path: "dashboard", // This is an absolute path, which is invalid
-        element: <Dashboard></Dashboard>,
+        path: "dashboard",
+        element: <Dashboard />,
       },
       {
         path: "profile",
-        element: <Profile></Profile>,
+        element: <Profile />,
       },
       {
         path: "dailyreports",
-        element: <DailyResults></DailyResults>,
+        element: <DailyResults />,
       },
       {
         path: "dailydata",
-        element: <DailyData></DailyData>,
-      },
-      {
-        path: "dataentry",
-        element: <DataEntry></DataEntry>,
+        element: <DailyData />,
       },
       {
         path: "settings",
-        element: <Settings></Settings>,
+        element: <Settings />,
+      },
+      {
+        path: "dataentry",
+        element: <DataEntry />,
       },
     ],
   },
@@ -80,7 +82,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <LoaderProvider>
+        <RouterProvider router={router} />
+      </LoaderProvider>
     </Provider>
   </React.StrictMode>
 );
